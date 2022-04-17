@@ -45,3 +45,7 @@ steps:
     packagePublishDescription: '0.1.1'
 
 
+- task: WhiteSource@21
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+    projectName: 'AhmadWhiteSourceProj'
