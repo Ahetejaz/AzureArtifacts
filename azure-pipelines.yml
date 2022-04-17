@@ -24,3 +24,24 @@ steps:
 - script: |
     npm run build
   displayName: 'npm install and build'
+
+- task: DownloadPackage@1
+  inputs:
+    packageType: 'upack'
+    feed: '5d1c70dc-a2ac-4bb2-b7c3-2b0aaa879769/999e8adf-c38c-4093-9272-e21142babb81'
+    view: 'a30f2293-c226-4cf3-9869-bb009ab7d2f8'
+    definition: '760cfef6-5f03-4f03-9e29-6a29abe73021'
+    version: '0.1.0'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: UniversalPackages@0
+  inputs:
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '5d1c70dc-a2ac-4bb2-b7c3-2b0aaa879769/999e8adf-c38c-4093-9272-e21142babb81'
+    vstsFeedPackagePublish: 'universaldemo'
+    versionOption: 'patch'
+    packagePublishDescription: '0.1.1'
+
+
